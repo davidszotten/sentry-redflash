@@ -56,7 +56,7 @@ class RedflasMessage(Plugin):
             return  # TODO: log error?
 
         # message title/description from /sentry//templates/sentry/partial/_group.html
-        if group.view:
+        if getattr(group, 'view', None):
             title = group.view
         else:
             title = group.message_top()[:100]
