@@ -47,12 +47,12 @@ class RedflasMessage(Plugin):
         if event.level < logging.ERROR:
             return
 
-        url = self.get_option('url', event.project)
-        key = self.get_option('key', event.project)
-        group = self.get_option('group', event.project)
+        redflash_url = self.get_option('url', event.project)
+        redflash_key = self.get_option('key', event.project)
+        redflash_group = self.get_option('group', event.project)
 
         # make sure we are properly configured
-        if not (url and key and group):
+        if not (redflash_url and redflash_key and redflash_group):
             return  # TODO: log error?
 
         # message title/description from /sentry//templates/sentry/partial/_group.html
@@ -63,5 +63,6 @@ class RedflasMessage(Plugin):
         message = group.message
 
         notification_message = "%s\n%s" % (title, message)
-        redflash_client = RedFlashClient(url, key)
-        redflash_client.notify_group(group, notification_message)
+        notification_message = event.message
+        redflash_client = RedFlashClient(redflash_url, redflash_key)
+        redflash_client.notify_group(redflash_group, notification_message)
