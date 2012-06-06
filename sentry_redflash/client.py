@@ -1,3 +1,10 @@
+"""
+sentry_redflash.client
+~~~~~~~~~~~~~~~~~~~~~
+
+:copyright: (c) 2012 by David Szotten.
+:license: MIT, see LICENSE for more details.
+"""
 import urllib
 
 

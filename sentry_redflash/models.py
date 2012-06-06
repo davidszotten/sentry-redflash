@@ -11,6 +11,7 @@ import logging
 from django import forms
 from sentry.plugins import Plugin, register
 
+import sentry_redflash
 from sentry_redflash.client import RedFlashClient
 
 
@@ -31,7 +32,7 @@ class RedflasMessage(Plugin):
     slug = 'redflash'
     conf_key = 'redflash'
     description = 'Send error notifications to Redflash. (github.com/aquamatt/RedFlash)'
-    version = '0.0.1'
+    version = sentry_redflash.VERSION
     project_conf_form = RedflashOptionsForm
 
     # def is_configured(self, project):

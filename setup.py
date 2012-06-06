@@ -18,7 +18,7 @@ install_requires = [
 
 setup(
     name='sentry-redflash',
-    version='0.0.1',
+    version='0.0.2',
     author='David Szotten',
     author_email='Author name (as one word) at gmail.com',
     url='http://github.com/davidszotten/sentry-redflash',
