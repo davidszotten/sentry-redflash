@@ -20,7 +20,7 @@ logger = logging.getLogger('sentry.plugins.redflash')
 
 class RedflashOptionsForm(forms.Form):
     url = forms.CharField(help_text="Redflash server url.")
-    key = forms.CharField(help_text="API ket")
+    key = forms.CharField(help_text="API key")
     group = forms.CharField(help_text="Redflash contact group to notify")
 
 
