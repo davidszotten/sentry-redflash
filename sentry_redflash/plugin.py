@@ -30,12 +30,9 @@ class RedflashPlugin(Plugin):
     title = 'Redflash'
     slug = 'redflash'
     conf_key = 'redflash'
-    description = 'Send error notifications to Redflash. (github.com/aquamatt/RedFlash)'
+    description = 'Send error notifications to Redflash.'
     version = sentry_redflash.VERSION
     project_conf_form = RedflashOptionsForm
-
-    # def is_configured(self, project):
-        # return all((self.get_option(k, project) for k in ('token', 'service_name')))
 
     def post_process(self, group, event, is_new, is_sample, **kwargs):
         # only notify about new events
@@ -54,7 +51,8 @@ class RedflashPlugin(Plugin):
         if not (redflash_url and redflash_key and redflash_group):
             return  # TODO: log error?
 
-        # message title/description from /sentry//templates/sentry/partial/_group.html
+        # message title/description
+        # from /sentry//templates/sentry/partial/_group.html
         if getattr(group, 'view', None):
             title = group.view
         else:

@@ -11,4 +11,3 @@ try:
         .get_distribution('sentry-redflash').version
 except Exception, e:
     VERSION = 'unknown'
-

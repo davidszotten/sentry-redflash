@@ -24,14 +24,15 @@ at rf_url using the api_key. """
 
     def _send(self, ctype, slug, data):
         data['api_key'] = self.api_key
-        u = urllib.urlopen(self.rf_url+"/%s/%s/"%(ctype,slug),
-                    data = urllib.urlencode(data))
+        response = urllib.urlopen(
+            self.rf_url + "/%s/%s/" % (ctype, slug),
+            data=urllib.urlencode(data))
 
-        return u
+        return response
 
     def _notify(self, ctype, slug, message):
         """ Send message to a contact group or contact (specify in ctype) """
-        data = {'message' : message}
+        data = {'message': message}
 
         response = self._send(ctype, slug, data)
         code = response.getcode()
