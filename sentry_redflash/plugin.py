@@ -1,5 +1,5 @@
 """
-sentry_redflash.models
+sentry_redflash.plugin
 ~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: (c) 2012 by David Szotten.
@@ -25,7 +25,7 @@ class RedflashOptionsForm(forms.Form):
 
 
 @register
-class RedflasMessage(Plugin):
+class RedflashPlugin(Plugin):
     author = 'David Szotten'
     author_url = 'https://github.com/davidszotten/sentry-redflash'
     title = 'Redflash'

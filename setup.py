@@ -18,7 +18,7 @@ install_requires = [
 
 setup(
     name='sentry-redflash',
-    version='0.0.2',
+    version='0.0.3',
     author='David Szotten',
     author_email='Author name (as one word) at gmail.com',
     url='http://github.com/davidszotten/sentry-redflash',
@@ -29,4 +29,9 @@ setup(
     zip_safe=False,
     install_requires=install_requires,
     include_package_data=True,
+    entry_points={
+       'sentry.plugins': [
+            'pluginname = sentry_redflash.plugin:RedflashPlugin'
+        ],
+    },
 )
