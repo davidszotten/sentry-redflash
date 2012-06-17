@@ -9,7 +9,7 @@ sentry_redflash.plugin
 import logging
 
 from django import forms
-from sentry.plugins import Plugin, register
+from sentry.plugins import Plugin
 
 import sentry_redflash
 from sentry_redflash.client import RedFlashClient
@@ -24,7 +24,6 @@ class RedflashOptionsForm(forms.Form):
     group = forms.CharField(help_text="Redflash contact group to notify")
 
 
-@register
 class RedflashPlugin(Plugin):
     author = 'David Szotten'
     author_url = 'https://github.com/davidszotten/sentry-redflash'
