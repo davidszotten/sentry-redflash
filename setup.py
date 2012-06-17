@@ -13,12 +13,12 @@ from setuptools import setup, find_packages
 
 
 install_requires = [
-    'sentry>=3.8.0',
+    'sentry>=4.6.0',
 ]
 
 setup(
     name='sentry-redflash',
-    version='0.0.4',
+    version='0.0.5',
     author='David Szotten',
     author_email='Author name (as one word) at gmail.com',
     url='http://github.com/davidszotten/sentry-redflash',
