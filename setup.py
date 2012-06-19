@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 sentry-redflash
-==============
+===============
 
 An extension for Sentry which integrates with Redflash. (SMS/twitter
 notifications, https://github.com/aquamatt/RedFlash)
