@@ -9,7 +9,6 @@ sentry_redflash.plugin
 import logging
 
 from django import forms
-from sentry.models import Group
 from sentry.plugins import Plugin
 
 import sentry_redflash
@@ -52,11 +51,6 @@ class RedflashPlugin(Plugin):
         # make sure we are properly configured
         if not (redflash_url and redflash_key and redflash_group):
             return  # TODO: log error?
-
-        # at this point the group may have just been instanciated, which
-        # doesn't guarantee that group.message is a string, so re-fetch
-        # from the db. See issue github.com/getsentry/sentry/issues/572
-        group = Group.objects.get(pk=group.pk)
 
         # message title/description
         # from sentry:///templates/sentry/partial/_group.html
