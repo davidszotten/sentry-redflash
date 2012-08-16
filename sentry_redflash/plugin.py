@@ -9,6 +9,7 @@ sentry_redflash.plugin
 import logging
 
 from django import forms
+from sentry.models import Group
 from sentry.plugins import Plugin
 
 import sentry_redflash
@@ -16,6 +17,7 @@ from sentry_redflash.client import RedFlashClient
 
 
 logger = logging.getLogger('sentry.plugins.redflash')
+MAX_LENGTH = 159
 
 
 class RedflashOptionsForm(forms.Form):
@@ -51,15 +53,27 @@ class RedflashPlugin(Plugin):
         if not (redflash_url and redflash_key and redflash_group):
             return  # TODO: log error?
 
+        # at this point the group may have just been instanciated, which
+        # doesn't guarantee that group.message is a string, so re-fetch
+        # from the db. See issue github.com/getsentry/sentry/issues/572
+        group = Group.objects.get(pk=group.pk)
+
         # message title/description
-        # from /sentry//templates/sentry/partial/_group.html
+        # from sentry:///templates/sentry/partial/_group.html
         if getattr(group, 'view', None):
             title = group.view
+            message = group.message
+        elif group.culprit:
+            title = group.culprit
+            message = group.message
         else:
-            title = group.message_top()[:100]
-        message = group.message
+            title = group.message
+            message = ""
 
-        notification_message = "%s\n%s" % (title, message)
-        notification_message = event.message
+        notification = "%s\n%s" % (title, message)
+        notification = notification.strip()
+        if len(notification) > MAX_LENGTH:
+            notification = notification[:(MAX_LENGTH - 3)] + "..."
+
         redflash_client = RedFlashClient(redflash_url, redflash_key)
-        redflash_client.notify_group(redflash_group, notification_message)
+        redflash_client.notify_group(redflash_group, notification)
