@@ -31,7 +31,7 @@ setup(
     include_package_data=True,
     entry_points={
        'sentry.plugins': [
-            'pluginname = sentry_redflash.plugin:RedflashPlugin'
+            'redflash = sentry_redflash.plugin:RedflashPlugin'
         ],
     },
 )
